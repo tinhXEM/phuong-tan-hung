@@ -1,0 +1,36 @@
+# Loại trừ tất cả file ẩn (bắt đầu bằng dấu chấm)
+.*
+
+# Nhưng giữ lại một số file quan trọng
+!.gitignore
+!.gitkeep
+
+# Các file hệ thống macOS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Các file editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Các file log
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Các file tạm
+*.tmp
+*.temp
+
+# Các file backup
+*.bak
+*.backup
