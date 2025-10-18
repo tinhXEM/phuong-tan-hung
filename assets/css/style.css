@@ -147,6 +147,75 @@ a:hover{
 td, th{
 	white-space: nowrap
 }
+
+/* Mobile responsive table */
+@media (max-width: 768px) {
+  .table-responsive {
+    border: none;
+  }
+
+  .table thead {
+    display: none; /* Ẩn header */
+  }
+
+  .table tbody tr {
+    display: block;
+    margin-bottom: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    padding: 1rem;
+  }
+
+  .table tbody td {
+    display: block;
+    text-align: left;
+    border: none;
+    padding: 0.25rem 0;
+    background: transparent !important;
+  }
+
+  /* TD 1: Tên - canh trái, bold, lớn hơn */
+  .table tbody td:nth-child(1) {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #ffffff;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    float: left;
+    width: 60%;
+  }
+
+  /* TD 3: SĐT - canh phải, màu trắng sáng */
+  .table tbody td:nth-child(3) {
+    font-weight: 700;
+    color: #ffffff;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    float: right;
+    width: 40%;
+    text-align: right;
+    font-size: 1rem;
+  }
+
+  /* TD 2: Chức vụ - xuống dòng, full width, cho phép wrap */
+  .table tbody td:nth-child(2) {
+    clear: both;
+    width: 100%;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-top: 0.5rem;
+    white-space: normal;
+    word-wrap: break-word;
+    line-height: 1.4;
+  }
+
+  /* Clearfix cho table rows */
+  .table tbody tr::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
 .table>:not(caption)>*>*{
 	background: rgba(255, 255, 255, 0.08);
 	color: #fff;
@@ -157,4 +226,211 @@ td, th{
 }
 .accordion-button{
 	text-transform: uppercase;
+}
+
+/* Modal styling - Phong cách màu đỏ */
+.modal-content {
+	background: rgba(139, 0, 0, 0.9);
+	backdrop-filter: blur(12px) saturate(180%);
+	-webkit-backdrop-filter: blur(12px) saturate(180%);
+	border-radius: 16px;
+	border: 1px solid rgba(255, 255, 255, 0.3);
+	box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+	color: white;
+}
+
+.modal-header {
+	border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+	background: rgba(160, 0, 0, 0.8);
+	border-radius: 16px 16px 0 0;
+}
+
+.modal-title {
+	color: #fff;
+	font-weight: 600;
+	text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.modal-footer {
+	border-top: 1px solid rgba(255, 255, 255, 0.3);
+	background: rgba(160, 0, 0, 0.8);
+	border-radius: 0 0 16px 16px;
+}
+
+.btn-close {
+	filter: invert(1) brightness(1.5);
+	opacity: 0.8;
+}
+
+.btn-close:hover {
+	opacity: 1;
+}
+
+/* Nút trong modal footer */
+.modal-footer .btn {
+	border-radius: 8px;
+	font-weight: 500;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+}
+
+.modal-footer .btn-secondary {
+	background: rgba(255, 255, 255, 0.2);
+	border: 1px solid rgba(255, 255, 255, 0.3);
+	color: #fff;
+}
+
+.modal-footer .btn-secondary:hover {
+	background: rgba(255, 255, 255, 0.3);
+	border-color: rgba(255, 255, 255, 0.5);
+}
+
+.modal-footer .btn-primary {
+	background: rgba(255, 255, 255, 0.9);
+	border: 1px solid rgba(255, 255, 255, 0.9);
+	color: #8B0000;
+	font-weight: 600;
+}
+
+.modal-footer .btn-primary:hover {
+	background: #fff;
+	border-color: #fff;
+	color: #8B0000;
+	transform: translateY(-1px);
+}
+
+/* Iframe styling */
+#modalIframe {
+	border-radius: 0 0 16px 16px;
+	min-height: 600px;
+	box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Hiệu ứng đặc biệt cho modal */
+.modal-backdrop {
+	background-color: rgba(0, 0, 0, 0.7);
+	backdrop-filter: blur(4px);
+	-webkit-backdrop-filter: blur(4px);
+}
+
+.modal.fade .modal-dialog {
+	transform: scale(0.8) translateY(-50px);
+	transition: transform 0.3s ease-out;
+}
+
+.modal.show .modal-dialog {
+	transform: scale(1) translateY(0);
+}
+
+/* Hiệu ứng hover cho các nút */
+.modal-footer .btn {
+	transition: all 0.3s ease;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.modal-footer .btn:hover {
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsive modal */
+@media (max-width: 768px) {
+	.modal-dialog {
+		margin: 0;
+		height: 100vh;
+	}
+
+	.modal-content {
+		height: 100vh;
+		border-radius: 0;
+		background: rgba(139, 0, 0, 0.95);
+	}
+
+	.modal-header {
+		border-radius: 0;
+		background: rgba(160, 0, 0, 0.9);
+	}
+
+	.modal-footer {
+		border-radius: 0;
+		background: rgba(160, 0, 0, 0.9);
+	}
+
+	#modalIframe {
+		height: calc(100vh - 120px);
+		border-radius: 0;
+	}
+}
+
+/* Search input styling */
+.search-input {
+	background: rgba(255, 255, 255, 0.15);
+	backdrop-filter: blur(8px);
+	-webkit-backdrop-filter: blur(8px);
+	border: 1px solid rgba(255, 255, 255, 0.3);
+	color: #fff;
+	padding: 12px 20px;
+	font-size: 14px;
+	transition: all 0.3s ease;
+	border-radius: 12px 0 0 12px;
+	z-index: 1;
+}
+
+.search-input:focus {
+	background: rgba(255, 255, 255, 0.2);
+	border-color: rgba(255, 255, 255, 0.5);
+	box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+	outline: none;
+}
+
+.search-input::placeholder {
+	color: rgba(255, 255, 255, 0.7);
+}
+
+/* Search button styling */
+.input-group .btn-glass {
+	border-radius: 0 12px 12px 0;
+	border-left: none;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+	background: rgba(255, 255, 255, 0.15);
+	backdrop-filter: blur(8px);
+	-webkit-backdrop-filter: blur(8px);
+	border: 1px solid rgba(255, 255, 255, 0.3);
+	color: #fff;
+	padding: 12px 20px;
+	transition: all 0.3s ease;
+	z-index: 1;
+}
+
+.input-group .btn-glass:hover {
+	background: rgba(255, 255, 255, 0.25);
+	border-color: rgba(255, 255, 255, 0.5);
+	transform: none;
+	box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+}
+
+.input-group .btn-glass:focus {
+	background: rgba(255, 255, 255, 0.25);
+	border-color: rgba(255, 255, 255, 0.5);
+	box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+	outline: none;
+}
+
+/* Highlight effect for search results */
+.highlight-row {
+	background: rgba(255, 235, 59, 0.3) !important;
+	animation: highlightFade 0.5s ease-in-out;
+	box-shadow: 0 0 10px rgba(255, 235, 59, 0.2);
+}
+
+@keyframes highlightFade {
+	0% {
+		background: rgba(255, 235, 59, 0.6) !important;
+		transform: scale(1.02);
+	}
+	100% {
+		background: rgba(255, 235, 59, 0.3) !important;
+		transform: scale(1);
+	}
 }

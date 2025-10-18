@@ -43,9 +43,9 @@
 							<h6 class="mb-0">Quản lý khu phố</h6>
 						</div>
 						<div class="card-body">
-							<a href="https://phuongtanhung.gov.vn/Layout" target="_blank" class="btn-glass d-block mb-3">🗂️ Tra cứu khu phố cũ – mới</a>
-							<a href="https://phuongtanhung.gov.vn/Layout" target="_blank" class="btn-glass d-block mb-3">🗺️ Xem bản đồ khu phố</a>
-							<a href="https://phuongtanhung.gov.vn/Layout" target="_blank" class="btn-glass d-block mb-3">👥 Tra cứu nhân sự khu phố</a>
+							<a href="javascript:void(0)" onclick="openIframeModal('https://phuongtanhung.gov.vn/Layout', 'Tra cứu khu phố cũ – mới')" class="btn-glass d-block mb-3">🗂️ Tra cứu khu phố cũ – mới</a>
+							<a href="javascript:void(0)" onclick="openIframeModal('https://phuongtanhung.gov.vn/Layout', 'Xem bản đồ khu phố')" class="btn-glass d-block mb-3">🗺️ Xem bản đồ khu phố</a>
+							<a href="javascript:void(0)" onclick="openIframeModal('https://phuongtanhung.gov.vn/Layout', 'Tra cứu nhân sự khu phố')" class="btn-glass d-block mb-3">👥 Tra cứu nhân sự khu phố</a>
 						</div>
 					</div>
 					<div class="card">
@@ -53,6 +53,17 @@
 							<h6 class="mb-0">Thông tin liên hệ phòng ban</h6>
 						</div>
 						<div class="card-body">
+							<div class="mb-3">
+								<div class="input-group">
+									<input type="text"
+										   id="contactSearch"
+										   class="form-control search-input"
+										   placeholder="🔍 Tìm kiếm theo tên, chức vụ hoặc số điện thoại...">
+									<button class="btn btn-glass" type="button" id="searchBtn">
+										🔍 Tìm
+									</button>
+								</div>
+							</div>
 							<div class="accordion" id="accordionList">
 								<div class="accordion-item">
 									<h2 class="accordion-header">
@@ -313,7 +324,7 @@
 							<a href="https://phuongtanhung.gov.vn/Account" target="_blank" class="btn-glass d-block mb-3">🔑 Đăng nhập hệ thống</a>
 							<a href="https://phuongtanhung.gov.vn/Account" target="_blank" class="btn-glass d-block mb-3">🏛️ Phòng họp không giấy</a>
 							<a href="https://phuongtanhung.gov.vn/Account" target="_blank" class="btn-glass d-block mb-3">📄 Quản lý văn bản</a>
-							<a href="https://phuongtanhung.gov.vn/Account" target="_blank" class="btn-glass d-block mb-3">💬 Trao đổi thông tin nội bộ</a>
+							<a href="http://103.7.43.101:8065/" target="_blank" class="btn-glass d-block mb-3">💬 Trao đổi thông tin nội bộ</a>
 						</div>
 					</div>
 					<div class="card mb-4">
@@ -321,7 +332,7 @@
 							<h6 class="mb-0">Địa chỉ trụ sở các cơ quan</h6>
 						</div>
 						<div class="card-body">
-							<a href="https://phuongtanhung.gov.vn/Layout" target="_blank" class="btn-glass d-block">📍 Mở danh sách địa chỉ</a>
+							<a href="javascript:void(0)" onclick="openIframeModal('https://phuongtanhung.gov.vn/Layout', 'Danh sách địa chỉ trụ sở')" class="btn-glass d-block">📍 Mở danh sách địa chỉ</a>
 						</div>
 					</div>
 					<div class="card mb-4">
@@ -339,6 +350,26 @@
 		</section>
 		</div>
 	</div>
+
+	<!-- Modal với iframe - Fullscreen -->
+	<div class="modal fade" id="iframeModal" tabindex="-1" aria-labelledby="iframeModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-fullscreen">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="iframeModalLabel">Hệ thống quản lý Phường Tân Hưng</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body p-0">
+					<iframe id="modalIframe" src="" width="100%" height="100%" frameborder="0" style="border: none;"></iframe>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+					<button type="button" class="btn btn-primary" onclick="openInNewTab()">Mở trong tab mới</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 	<script>
 		document.addEventListener("DOMContentLoaded", () => {
@@ -352,6 +383,145 @@
 						once: true
 					});
 				});
+			}
+		});
+
+		// Hàm mở modal với iframe
+		function openIframeModal(url, title) {
+			const modal = new bootstrap.Modal(document.getElementById('iframeModal'));
+			const iframe = document.getElementById('modalIframe');
+			const modalTitle = document.getElementById('iframeModalLabel');
+
+			// Cập nhật URL và tiêu đề
+			iframe.src = url;
+			modalTitle.textContent = title;
+
+			// Lưu URL để có thể mở trong tab mới
+			window.currentIframeUrl = url;
+
+			// Hiển thị modal
+			modal.show();
+		}
+
+		// Hàm mở trong tab mới
+		function openInNewTab() {
+			if (window.currentIframeUrl) {
+				window.open(window.currentIframeUrl, '_blank');
+			}
+		}
+
+		// Đóng modal và xóa src của iframe để tiết kiệm băng thông
+		document.getElementById('iframeModal').addEventListener('hidden.bs.modal', function () {
+			document.getElementById('modalIframe').src = '';
+		});
+
+		// Hàm chuẩn hóa tiếng Việt (bỏ dấu)
+		function removeVietnameseTones(str) {
+			return str
+				.normalize('NFD')
+				.replace(/[\u0300-\u036f]/g, '')
+				.replace(/đ/g, 'd')
+				.replace(/Đ/g, 'D');
+		}
+
+		// Hàm chuẩn hóa số điện thoại (bỏ dấu chấm/khoảng trắng)
+		function normalizePhone(str) {
+			return str.replace(/[\.\s\-]/g, '');
+		}
+
+		// Hàm tìm kiếm chính
+		function searchContacts() {
+			const searchTerm = document.getElementById('contactSearch').value.toLowerCase();
+			const searchNormalized = removeVietnameseTones(searchTerm);
+			const searchPhone = normalizePhone(searchTerm);
+
+			// Lấy tất cả các accordion items
+			const accordionItems = document.querySelectorAll('.accordion-item');
+			let foundResults = false;
+			let firstHighlightedRow = null;
+			let accordionsToOpen = [];
+			let accordionsToClose = [];
+
+			// Xóa highlight cũ
+			document.querySelectorAll('.highlight-row').forEach(row => {
+				row.classList.remove('highlight-row');
+			});
+
+			// Nếu không có từ khóa tìm kiếm, đóng tất cả accordion
+			if (searchTerm === '') {
+				document.querySelectorAll('.accordion-collapse.show').forEach(collapse => {
+					bootstrap.Collapse.getInstance(collapse)?.hide();
+				});
+				return;
+			}
+
+			// Tìm kiếm và highlight kết quả
+			accordionItems.forEach(item => {
+				const tbody = item.querySelector('tbody');
+				const rows = tbody.querySelectorAll('tr');
+				let hasMatch = false;
+
+				rows.forEach(row => {
+					const name = row.cells[0].textContent;
+					const position = row.cells[1].textContent;
+					const phone = row.cells[2].textContent;
+
+					const nameNormalized = removeVietnameseTones(name.toLowerCase());
+					const positionNormalized = removeVietnameseTones(position.toLowerCase());
+					const phoneNormalized = normalizePhone(phone);
+
+					const isMatch = nameNormalized.includes(searchNormalized) ||
+								   positionNormalized.includes(searchNormalized) ||
+								   phoneNormalized.includes(searchPhone);
+
+					if (isMatch) {
+						row.classList.add('highlight-row');
+						hasMatch = true;
+						foundResults = true;
+
+						// Lưu lại dòng đầu tiên được highlight
+						if (!firstHighlightedRow) {
+							firstHighlightedRow = row;
+						}
+					}
+				});
+
+				// Lưu danh sách accordion cần mở/đóng
+				const collapse = item.querySelector('.accordion-collapse');
+				if (hasMatch) {
+					accordionsToOpen.push(collapse);
+				} else {
+					accordionsToClose.push(collapse);
+				}
+			});
+
+			// Đóng các accordion không có kết quả
+			accordionsToClose.forEach(collapse => {
+				if (collapse.classList.contains('show')) {
+					bootstrap.Collapse.getInstance(collapse)?.hide();
+				}
+			});
+
+			// Mở các accordion có kết quả
+			accordionsToOpen.forEach(collapse => {
+				if (!collapse.classList.contains('show')) {
+					bootstrap.Collapse.getOrCreateInstance(collapse).show();
+				}
+			});
+
+			// Scroll đến kết quả đầu tiên sau khi accordion có kết quả đã mở
+			if (firstHighlightedRow) {
+				setTimeout(() => {
+					firstHighlightedRow.scrollIntoView({ behavior: 'smooth', block: 'center' });
+				}, 500);
+			}
+		}
+
+		// Gắn sự kiện cho nút tìm kiếm và phím Enter
+		document.getElementById('searchBtn').addEventListener('click', searchContacts);
+		document.getElementById('contactSearch').addEventListener('keypress', function(e) {
+			if (e.key === 'Enter') {
+				searchContacts();
 			}
 		});
 	</script>
