@@ -434,3 +434,12 @@ td, th{
 		transform: scale(1);
 	}
 }
+#accordionList2 .accordion-body a{
+	color: #fff;
+	text-decoration: underline;
+}
+@media screen and (max-width: 500px) {
+	img.app-store {
+		height: 38px;
+	}
+}
